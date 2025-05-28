@@ -1,0 +1,530 @@
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Banshika Portfolio - Creative Developer
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Dancing+Script&display=swap" rel="stylesheet"/>
+  <style>
+   html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+    /* Title text cursive style */
+    .title-text {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+    }
+    /* Custom toggle switch */
+    #toggle-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 3rem;
+      height: 1.5rem;
+      background-color: #d1d5db; /* gray-300 */
+      border-radius: 9999px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s ease;
+      border: 1px solid #9ca3af; /* gray-400 */
+    }
+    #toggle-checkbox:checked {
+      background-color: #4ade80; /* green-400 */
+      border-color: #4ade80;
+    }
+    #toggle-checkbox::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 1.1rem;
+      height: 1.1rem;
+      background-color: white;
+      border-radius: 9999px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    }
+    #toggle-checkbox:checked::before {
+      transform: translateX(1.5rem);
+    }
+    /* Geometric shapes */
+    .shape-circle {
+      position: absolute;
+      border-radius: 9999px;
+      opacity: 0.15;
+      filter: blur(40px);
+      z-index: -1;
+    }
+    .shape-triangle {
+      width: 0;
+      height: 0;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 100px solid rgba(99, 102, 241, 0.15);
+      position: absolute;
+      filter: blur(30px);
+      z-index: -1;
+    }
+    .shape-rectangle {
+      position: absolute;
+      background: rgba(236, 72, 153, 0.15);
+      filter: blur(30px);
+      z-index: -1;
+      border-radius: 12px;
+    }
+  </style>
+ </head>
+ <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 relative overflow-x-hidden">
+  <!-- Geometric shapes for background -->
+  <div class="shape-circle bg-indigo-600 w-72 h-72 top-10 left-10 hidden sm:block"></div>
+  <div class="shape-triangle top-48 right-10 hidden lg:block"></div>
+  <div class="shape-rectangle w-48 h-32 bottom-20 left-20 hidden md:block"></div>
+  <div class="shape-circle bg-pink-500 w-56 h-56 bottom-10 right-10 hidden sm:block"></div>
+  <header class="fixed w-full bg-white dark:bg-gray-900 shadow-md z-50">
+   <nav class="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between h-16">
+    <a class="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 tracking-wide title-text" href="#home" title="Banshika Portfolio - Creative Developer">
+     Banshika
+    </a>
+    <ul class="hidden md:flex space-x-10 font-extrabold text-gray-700 dark:text-gray-300 tracking-wide">
+     <li>
+      <a class="hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#home" title="Home Section">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#projects" title="Projects Section">
+       Projects
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#about" title="About Me Section">
+       About Me
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#contact" title="Contact Section">
+       Contact
+      </a>
+     </li>
+    </ul>
+    <div class="flex items-center space-x-5">
+     <div class="hidden md:flex space-x-3 items-center">
+      <a aria-label="Download Resume 1 PDF" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-5 py-2 rounded-md shadow-lg transition flex items-center tracking-wide" download="" href="" id="resume-link-0" style="" title="Download Resume 1">
+       <i class="fas fa-file-download mr-3"></i>
+       Resume 1
+      </a>
+      <a aria-label="Download Resume 2 PDF" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-5 py-2 rounded-md shadow-lg transition flex items-center tracking-wide" download="" href="" id="resume-link-1" style="" title="Download Resume 2">
+       <i class="fas fa-file-download mr-3"></i>
+       Resume 2
+      </a>
+     </div>
+     <button aria-label="Toggle Dark Mode" class="relative cursor-pointer focus:outline-none" id="theme-toggle" title="Toggle Dark Mode">
+      <input class="sr-only" id="toggle-checkbox" type="checkbox"/>
+     </button>
+    </div>
+    <button aria-label="Open mobile menu" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none" id="mobile-menu-button" title="Open Mobile Menu">
+     <i class="fas fa-bars fa-lg"></i>
+    </button>
+   </nav>
+   <div class="hidden md:hidden bg-white dark:bg-gray-900 shadow-md" id="mobile-menu">
+    <ul class="flex flex-col space-y-5 p-6 font-extrabold text-gray-700 dark:text-gray-300 tracking-wide">
+     <li>
+      <a class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#home" title="Home Section">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#projects" title="Projects Section">
+       Projects
+      </a>
+     </li>
+     <li>
+      <a class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#about" title="About Me Section">
+       About Me
+      </a>
+     </li>
+     <li>
+      <a class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition" href="#contact" title="Contact Section">
+       Contact
+      </a>
+     </li>
+     <li class="flex space-x-3">
+      <a aria-label="Download Resume 1 PDF" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-5 py-2 rounded-md shadow-lg transition flex items-center flex-1 justify-center tracking-wide" download="" href="" id="resume-link-mobile-0" style="" title="Download Resume 1">
+       <i class="fas fa-file-download mr-3"></i>
+       Resume 1
+      </a>
+      <a aria-label="Download Resume 2 PDF" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-5 py-2 rounded-md shadow-lg transition flex items-center flex-1 justify-center tracking-wide" download="" href="" id="resume-link-mobile-1" style="" title="Download Resume 2">
+       <i class="fas fa-file-download mr-3"></i>
+       Resume 2
+      </a>
+     </li>
+    </ul>
+   </div>
+  </header>
+  <main class="pt-20 max-w-7xl mx-auto px-6 sm:px-10 relative z-10">
+   <!-- Home Section -->
+   <section class="min-h-screen flex flex-col justify-center items-center text-center space-y-8" id="home">
+    <img alt="A vibrant digital avatar of a confident young female developer with glasses, headphones, and a laptop, surrounded by floating code snippets and tech icons in neon colors" class="rounded-full w-52 h-52 object-cover shadow-2xl border-8 border-indigo-600 dark:border-indigo-400" height="208" loading="lazy" src="https://storage.googleapis.com/a1aa/image/a478de9a-8007-4b7d-351e-f34f09a615b1.jpg" width="208"/>
+    <h1 class="text-6xl title-text text-indigo-600 dark:text-indigo-400 leading-tight tracking-wide" title="Welcome to Banshika's Portfolio">
+     Hey, I’m
+     <span class="text-pink-500">
+      Banshika
+     </span>
+    </h1>
+    <p class="max-w-3xl text-xl sm:text-2xl text-gray-700 dark:text-gray-300 font-extrabold tracking-wide" title="Passionate female developer crafting beautiful web experiences">
+     A passionate female developer who loves crafting beautiful, efficient, and accessible web experiences. I believe in empowering through code and creating with heart.
+    </p>
+    <p class="max-w-3xl text-xl sm:text-2xl text-gray-700 dark:text-gray-300 font-extrabold tracking-wide" title="Exploring new tech and enjoying life">
+     When I’m not coding, you’ll find me exploring new tech, sipping chai, or jamming to my favorite indie tunes.
+    </p>
+    <a aria-label="See my projects" class="inline-block mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-10 py-4 rounded-full shadow-2xl transition tracking-wide" href="#projects" title="See My Projects">
+     See My Projects
+     <i class="fas fa-arrow-right ml-3"></i>
+    </a>
+   </section>
+   <!-- Projects Section -->
+   <section class="py-24" id="projects">
+    <h2 class="text-5xl font-extrabold text-center mb-16 text-indigo-600 dark:text-indigo-400 tracking-wide title-text" title="Projects Showcase">
+     Projects
+    </h2>
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+     <article class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border-4 border-indigo-600 dark:border-indigo-400" title="Task Manager App Project">
+      <img alt="Screenshot of a modern task manager app interface with a clean dashboard showing tasks, deadlines, and progress bars in pastel colors" class="w-full h-56 object-cover" height="448" loading="lazy" src="https://storage.googleapis.com/a1aa/image/7ab68595-6006-4f4d-bf67-1f7c26100cf1.jpg" width="672"/>
+      <div class="p-8">
+       <h3 class="text-3xl font-extrabold mb-3 text-indigo-600 dark:text-indigo-400 tracking-wide title-text">
+        Task Manager App
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 mb-6 font-extrabold tracking-wide" title="Description of Task Manager App">
+        A sleek task management app built with React and Tailwind CSS to help you organize your day efficiently.
+       </p>
+       <a aria-label="View Task Manager App Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-task-manager" title="View Task Manager App Demo">
+        <i class="fas fa-desktop mr-3 text-2xl"></i>
+        View Demo
+       </a>
+       <a aria-label="View Task Manager App on GitHub" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 dark:hover:text-indigo-300 font-extrabold tracking-wide" href="https://github.com/username/task-manager" rel="noopener noreferrer" target="_blank" title="View Task Manager App Code on GitHub" style="">
+        <i class="fab fa-github mr-3 text-2xl"></i>
+        View Code
+       </a>
+      </div>
+     </article>
+     <article class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border-4 border-indigo-600 dark:border-indigo-400" title="Portfolio Website Project">
+      <img alt="Screenshot of a personal portfolio website homepage with a hero section, project cards, and contact info in a minimalist design" class="w-full h-56 object-cover" height="448" loading="lazy" src="https://storage.googleapis.com/a1aa/image/75de66b1-c968-4183-f66c-afdcf624dfe0.jpg" width="672"/>
+      <div class="p-8">
+       <h3 class="text-3xl font-extrabold mb-3 text-indigo-600 dark:text-indigo-400 tracking-wide title-text">
+        Portfolio Website
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 mb-6 font-extrabold tracking-wide" title="Description of Portfolio Website">
+        My own portfolio site showcasing projects, skills, and contact info, built with Next.js and Tailwind CSS.
+       </p>
+       <a aria-label="View Portfolio Website Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-portfolio-website" title="View Portfolio Website Demo">
+        <i class="fas fa-desktop mr-3 text-2xl"></i>
+        View Demo
+       </a>
+       <a aria-label="View Portfolio Website on GitHub" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 dark:hover:text-indigo-300 font-extrabold tracking-wide" href="https://github.com/username/portfolio-website" rel="noopener noreferrer" target="_blank" title="View Portfolio Website Code on GitHub" style="">
+        <i class="fab fa-github mr-3 text-2xl"></i>
+        View Code
+       </a>
+      </div>
+     </article>
+     <article class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border-4 border-indigo-600 dark:border-indigo-400" title="Weather Dashboard Project">
+      <img alt="Screenshot of a weather dashboard app showing current weather, forecast, and location search with colorful weather icons" class="w-full h-56 object-cover" height="448" loading="lazy" src="https://storage.googleapis.com/a1aa/image/27a52fc2-28a3-489b-a7e3-891f23e31ed8.jpg" width="672"/>
+      <div class="p-8">
+       <h3 class="text-3xl font-extrabold mb-3 text-indigo-600 dark:text-indigo-400 tracking-wide title-text">
+        Weather Dashboard
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 mb-6 font-extrabold tracking-wide" title="Description of Weather Dashboard">
+        A responsive weather dashboard using OpenWeatherMap API, built with vanilla JS and Tailwind CSS.
+       </p>
+       <a aria-label="View Weather Dashboard Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-weather-dashboard" title="View Weather Dashboard Demo">
+        <i class="fas fa-desktop mr-3 text-2xl"></i>
+        View Demo
+       </a>
+       <a aria-label="View Weather Dashboard on GitHub" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 dark:hover:text-indigo-300 font-extrabold tracking-wide" href="https://github.com/username/weather-dashboard" rel="noopener noreferrer" target="_blank" title="View Weather Dashboard Code on GitHub" style="">
+        <i class="fab fa-github mr-3 text-2xl"></i>
+        View Code
+       </a>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- About Me Section -->
+   <section class="py-24 bg-indigo-50 dark:bg-gray-800 rounded-3xl px-8 sm:px-16 max-w-5xl mx-auto relative" id="about">
+    <h2 class="text-5xl font-extrabold text-center mb-16 text-indigo-600 dark:text-indigo-400 tracking-wide title-text" title="About Banshika">
+     About Me
+    </h2>
+    <div class="flex flex-col md:flex-row items-center md:items-start space-y-12 md:space-y-0 md:space-x-16">
+     <img alt="Portrait of a cheerful young female developer sitting at a desk with a laptop, coffee mug, and colorful sticky notes on the wall behind, in a cozy room with warm lighting" class="rounded-full w-56 h-56 object-cover shadow-2xl border-8 border-pink-500 dark:border-pink-400 flex-shrink-0" height="336" loading="lazy" src="https://storage.googleapis.com/a1aa/image/dfd9cf46-57e2-480f-4792-080b04a0a129.jpg" width="336"/>
+     <div class="text-gray-700 dark:text-gray-300 text-xl space-y-6 font-extrabold tracking-wide" title="About Me Description">
+      <p>
+       I’m a woman who codes with passion and purpose. I love transforming ideas into digital realities that inspire and empower.
+      </p>
+      <p>
+       Every line of code I write is a step towards building a more inclusive and innovative tech world. I’m always eager to learn, grow, and collaborate.
+      </p>
+      <p>
+       If you want to see my journey and skills in detail, feel free to download my resumes below and get in touch!
+      </p>
+      <div class="mt-8 space-y-6">
+       <label class="block mb-3 font-extrabold text-pink-600 dark:text-pink-400 text-lg" for="resume-upload-0" title="Upload Resume 1 PDF">
+        Upload Resume 1 PDF
+       </label>
+       <input accept=".pdf" class="block w-full text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border-2 border-pink-500 dark:border-pink-400 rounded-lg px-5 py-3 cursor-pointer focus:outline-none focus:ring-4 focus:ring-pink-400 dark:focus:ring-pink-300 transition" id="resume-upload-0" type="file"/>
+       <label class="block mb-3 font-extrabold text-pink-600 dark:text-pink-400 text-lg" for="resume-upload-1" title="Upload Resume 2 PDF">
+        Upload Resume 2 PDF
+       </label>
+       <input accept=".pdf" class="block w-full text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border-2 border-pink-500 dark:border-pink-400 rounded-lg px-5 py-3 cursor-pointer focus:outline-none focus:ring-4 focus:ring-pink-400 dark:focus:ring-pink-300 transition" id="resume-upload-1" type="file"/>
+       <p class="mt-3 text-base text-gray-600 dark:text-gray-400 font-semibold tracking-wide" title="Resume upload instructions">
+        Upload your resume PDFs to update the download links above. You can store up to 2 resumes.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Contact Section -->
+   <section class="py-24 max-w-4xl mx-auto px-8 sm:px-16" id="contact">
+    <h2 class="text-5xl font-extrabold text-center mb-16 text-indigo-600 dark:text-indigo-400 tracking-wide title-text" title="Contact Banshika">
+     Get In Touch
+    </h2>
+    <form class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-10 space-y-8 border-4 border-indigo-600 dark:border-indigo-400" id="contact-form" novalidate="">
+     <div>
+      <label class="block text-gray-700 dark:text-gray-300 font-extrabold mb-3 text-lg tracking-wide" for="name" title="Name input label">
+       Name
+      </label>
+      <input class="w-full rounded-xl border-2 border-indigo-600 dark:border-indigo-400 px-6 py-4 focus:outline-none focus:ring-4 focus:ring-indigo-400 dark:focus:ring-indigo-300 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition font-extrabold tracking-wide" id="name" name="name" placeholder="Your full name" required="" type="text" title="Enter your full name"/>
+     </div>
+     <div>
+      <label class="block text-gray-700 dark:text-gray-300 font-extrabold mb-3 text-lg tracking-wide" for="email" title="Email input label">
+       Email
+      </label>
+      <input class="w-full rounded-xl border-2 border-indigo-600 dark:border-indigo-400 px-6 py-4 focus:outline-none focus:ring-4 focus:ring-indigo-400 dark:focus:ring-indigo-300 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition font-extrabold tracking-wide" id="email" name="email" placeholder="you@example.com" required="" type="email" title="Enter your email address"/>
+     </div>
+     <div>
+      <label class="block text-gray-700 dark:text-gray-300 font-extrabold mb-3 text-lg tracking-wide" for="message" title="Message input label">
+       Message
+      </label>
+      <textarea class="w-full rounded-xl border-2 border-indigo-600 dark:border-indigo-400 px-6 py-4 focus:outline-none focus:ring-4 focus:ring-indigo-400 dark:focus:ring-indigo-300 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition resize-none font-extrabold tracking-wide" id="message" name="message" placeholder="Write your message here..." required="" rows="6" title="Write your message here"></textarea>
+     </div>
+     <button aria-label="Send message" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-5 rounded-3xl shadow-2xl transition tracking-wide" type="submit" title="Send Message">
+      Send Message
+     </button>
+    </form>
+    <div class="mt-16 flex justify-center space-x-12 text-indigo-600 dark:text-indigo-400 text-4xl" title="Social media links">
+     <a aria-label="LinkedIn Profile" class="hover:text-indigo-800 dark:hover:text-indigo-300 transition" href="https://linkedin.com/in/username" rel="noopener noreferrer" target="_blank" title="LinkedIn Profile">
+      <i class="fab fa-linkedin"></i>
+     </a>
+     <a aria-label="GitHub Profile" class="hover:text-indigo-800 dark:hover:text-indigo-300 transition" href="https://github.com/username" rel="noopener noreferrer" target="_blank" title="GitHub Profile">
+      <i class="fab fa-github"></i>
+     </a>
+     <a aria-label="Send Email" class="hover:text-indigo-800 dark:hover:text-indigo-300 transition" href="mailto:username@example.com" title="Send Email">
+      <i class="fas fa-envelope"></i>
+     </a>
+    </div>
+   </section>
+  </main>
+  <!-- Creative 404 Page -->
+  <section class="hidden min-h-screen flex flex-col justify-center items-center text-center px-6" id="notfound">
+   <img alt="Creative 404 error illustration showing a lost developer surrounded by floating error messages and broken code snippets in a colorful cartoon style" class="w-80 h-60 object-contain mb-8" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/0db7d64e-93dc-4a56-7fbd-ea26f4f00b68.jpg" width="400"/>
+   <h1 class="text-6xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-4 tracking-wide" title="404 Error">
+    404
+   </h1>
+   <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-lg font-extrabold tracking-wide" title="404 Error Message">
+    Oops! Looks like you wandered into the void of lost code. This page doesn’t exist, but your skills do!
+   </p>
+   <a aria-label="Go back to homepage" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-10 py-4 rounded-full shadow-2xl transition tracking-wide" href="#home" title="Back to Home">
+    Back to Home
+   </a>
+  </section>
+  <script>
+   // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Dark mode toggle
+    const toggleCheckbox = document.getElementById('toggle-checkbox');
+
+    // Initialize theme based on localStorage or system preference
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        toggleCheckbox.checked = true;
+      } else {
+        document.documentElement.classList.remove('dark');
+        toggleCheckbox.checked = false;
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    toggleCheckbox.addEventListener('change', () => {
+      if (toggleCheckbox.checked) {
+        setTheme('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        setTheme('light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Contact form submission (dummy)
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // Simple email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      alert(`Thanks for reaching out, ${name}! I'll get back to you soon.`);
+      contactForm.reset();
+    });
+
+    // Optional: Show 404 page if URL hash is #404
+    function check404() {
+      if (window.location.hash === '#404') {
+        document.querySelector('main').classList.add('hidden');
+        document.getElementById('notfound').classList.remove('hidden');
+      } else {
+        document.querySelector('main').classList.remove('hidden');
+        document.getElementById('notfound').classList.add('hidden');
+      }
+    }
+    window.addEventListener('hashchange', check404);
+    window.addEventListener('load', check404);
+
+    // Resume upload and update download links with localStorage (up to 2 resumes)
+    const resumeUploads = [
+      document.getElementById('resume-upload-0'),
+      document.getElementById('resume-upload-1')
+    ];
+    const resumeLinks = [
+      document.getElementById('resume-link-0'),
+      document.getElementById('resume-link-1')
+    ];
+    const resumeLinksMobile = [
+      document.getElementById('resume-link-mobile-0'),
+      document.getElementById('resume-link-mobile-1')
+    ];
+
+    // Load stored resumes from localStorage on page load
+    function loadStoredResumes() {
+      for (let i = 0; i < 2; i++) {
+        const storedResume = localStorage.getItem(`resume_${i}`);
+        if (storedResume) {
+          try {
+            const resumeData = JSON.parse(storedResume);
+            if (resumeData.url && resumeData.name) {
+              resumeLinks[i].href = resumeData.url;
+              resumeLinks[i].download = resumeData.name;
+              resumeLinksMobile[i].href = resumeData.url;
+              resumeLinksMobile[i].download = resumeData.name;
+              resumeLinks[i].classList.remove('opacity-50', 'pointer-events-none');
+              resumeLinksMobile[i].classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+              disableResumeLink(i);
+            }
+          } catch {
+            disableResumeLink(i);
+          }
+        } else {
+          disableResumeLink(i);
+        }
+      }
+    }
+
+    // Disable resume link if no file uploaded
+    function disableResumeLink(index) {
+      resumeLinks[index].href = '#';
+      resumeLinks[index].download = '';
+      resumeLinksMobile[index].href = '#';
+      resumeLinksMobile[index].download = '';
+      resumeLinks[index].classList.add('opacity-50', 'pointer-events-none');
+      resumeLinksMobile[index].classList.add('opacity-50', 'pointer-events-none');
+    }
+
+    // Handle resume upload
+    resumeUploads.forEach((input, index) => {
+      input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file && file.type === 'application/pdf') {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const base64Data = event.target.result;
+            // Store as JSON string with name and base64 url
+            const resumeData = {
+              name: file.name,
+              url: base64Data
+            };
+            try {
+              localStorage.setItem(`resume_${index}`, JSON.stringify(resumeData));
+              resumeLinks[index].href = base64Data;
+              resumeLinks[index].download = file.name;
+              resumeLinksMobile[index].href = base64Data;
+              resumeLinksMobile[index].download = file.name;
+              resumeLinks[index].classList.remove('opacity-50', 'pointer-events-none');
+              resumeLinksMobile[index].classList.remove('opacity-50', 'pointer-events-none');
+              alert(`Resume ${index + 1} uploaded! You can now download it from the Resume ${index + 1} button.`);
+            } catch (err) {
+              alert('Failed to save resume. Local storage might be full.');
+              e.target.value = '';
+            }
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert('Please upload a valid PDF file.');
+          e.target.value = '';
+        }
+      });
+    });
+
+    // Initialize on load
+    window.addEventListener('load', () => {
+      loadStoredResumes();
+    });
+
+    // Demo URLs for the projects
+    const demoUrls = {
+      'demo-task-manager': 'https://demo.taskmanager.example.com',
+      'demo-portfolio-website': 'https://demo.portfolio.example.com',
+      'demo-weather-dashboard': 'https://demo.weatherdashboard.example.com'
+    };
+
+    // Add event listeners to demo buttons
+    Object.keys(demoUrls).forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          window.open(demoUrls[id], '_blank', 'noopener,noreferrer');
+        });
+      }
+    });
+  </script>
+ </body>
+</html>
