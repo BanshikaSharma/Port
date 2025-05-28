@@ -80,6 +80,11 @@
       z-index: -1;
       border-radius: 12px;
     }
+    /* Modal styles */
+    #demo-modal {
+      background-color: rgba(0,0,0,0.75);
+      backdrop-filter: blur(5px);
+    }
   </style>
  </head>
  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 relative overflow-x-hidden">
@@ -205,7 +210,7 @@
        <p class="text-gray-700 dark:text-gray-300 mb-6 font-extrabold tracking-wide" title="Description of Task Manager App">
         A sleek task management app built with React and Tailwind CSS to help you organize your day efficiently.
        </p>
-       <a aria-label="View Task Manager App Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-task-manager" title="View Task Manager App Demo">
+       <a aria-label="View Task Manager App Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-task-manager" title="View Task Manager App Demo" style="">
         <i class="fas fa-desktop mr-3 text-2xl"></i>
         View Demo
        </a>
@@ -224,7 +229,7 @@
        <p class="text-gray-700 dark:text-gray-300 mb-6 font-extrabold tracking-wide" title="Description of Portfolio Website">
         My own portfolio site showcasing projects, skills, and contact info, built with Next.js and Tailwind CSS.
        </p>
-       <a aria-label="View Portfolio Website Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-portfolio-website" title="View Portfolio Website Demo">
+       <a aria-label="View Portfolio Website Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-portfolio-website" title="View Portfolio Website Demo" style="">
         <i class="fas fa-desktop mr-3 text-2xl"></i>
         View Demo
        </a>
@@ -243,7 +248,7 @@
        <p class="text-gray-700 dark:text-gray-300 mb-6 font-extrabold tracking-wide" title="Description of Weather Dashboard">
         A responsive weather dashboard using OpenWeatherMap API, built with vanilla JS and Tailwind CSS.
        </p>
-       <a aria-label="View Weather Dashboard Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-weather-dashboard" title="View Weather Dashboard Demo">
+       <a aria-label="View Weather Dashboard Demo" class="inline-flex items-center text-pink-600 hover:text-pink-800 dark:hover:text-pink-400 font-extrabold tracking-wide cursor-pointer mr-6" id="demo-weather-dashboard" title="View Weather Dashboard Demo" style="">
         <i class="fas fa-desktop mr-3 text-2xl"></i>
         View Demo
        </a>
@@ -329,6 +334,18 @@
     </div>
    </section>
   </main>
+
+  <!-- Demo Modal -->
+  <div id="demo-modal" class="fixed inset-0 hidden items-center justify-center z-50" aria-modal="true" role="dialog" aria-labelledby="demo-modal-title" aria-describedby="demo-modal-desc">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl w-11/12 max-w-5xl h-[80vh] flex flex-col overflow-hidden">
+      <header class="flex justify-between items-center p-4 border-b border-gray-300 dark:border-gray-700">
+        <h3 id="demo-modal-title" class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400 title-text"></h3>
+        <button id="demo-modal-close" aria-label="Close demo modal" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none text-3xl font-bold leading-none">&times;</button>
+      </header>
+      <iframe id="demo-iframe" class="flex-grow w-full border-0" src="" title="Project Demo"></iframe>
+    </div>
+  </div>
+
   <!-- Creative 404 Page -->
   <section class="hidden min-h-screen flex flex-col justify-center items-center text-center px-6" id="notfound">
    <img alt="Creative 404 error illustration showing a lost developer surrounded by floating error messages and broken code snippets in a colorful cartoon style" class="w-80 h-60 object-contain mb-8" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/0db7d64e-93dc-4a56-7fbd-ea26f4f00b68.jpg" width="400"/>
@@ -516,13 +533,59 @@
       'demo-weather-dashboard': 'https://demo.weatherdashboard.example.com'
     };
 
+    // Modal elements
+    const demoModal = document.getElementById('demo-modal');
+    const demoIframe = document.getElementById('demo-iframe');
+    const demoModalTitle = document.getElementById('demo-modal-title');
+    const demoModalClose = document.getElementById('demo-modal-close');
+
+    // Open modal with iframe for demo
+    function openDemoModal(id) {
+      const url = demoUrls[id];
+      if (!url) return;
+      demoIframe.src = url;
+      let titleText = '';
+      if (id === 'demo-task-manager') titleText = 'Task Manager App Demo';
+      else if (id === 'demo-portfolio-website') titleText = 'Portfolio Website Demo';
+      else if (id === 'demo-weather-dashboard') titleText = 'Weather Dashboard Demo';
+      demoModalTitle.textContent = titleText;
+      demoModal.classList.remove('hidden');
+      demoModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeDemoModal() {
+      demoModal.classList.add('hidden');
+      demoModal.classList.remove('flex');
+      demoIframe.src = '';
+      document.body.style.overflow = '';
+    }
+
     // Add event listeners to demo buttons
     Object.keys(demoUrls).forEach(id => {
       const btn = document.getElementById(id);
       if (btn) {
         btn.addEventListener('click', () => {
-          window.open(demoUrls[id], '_blank', 'noopener,noreferrer');
+          openDemoModal(id);
         });
+      }
+    });
+
+    // Close modal on close button click
+    demoModalClose.addEventListener('click', closeDemoModal);
+
+    // Close modal on outside click
+    demoModal.addEventListener('click', (e) => {
+      if (e.target === demoModal) {
+        closeDemoModal();
+      }
+    });
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !demoModal.classList.contains('hidden')) {
+        closeDemoModal();
       }
     });
   </script>
